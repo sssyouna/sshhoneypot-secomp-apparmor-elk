@@ -1,0 +1,36 @@
+[2026-01-19 08:40:34] [[connection ATTEMPT]] 127.0.0.1:59186 - TCP connection established
+[2026-01-19 08:40:36] [[LOGIN ATTEMPT]] 127.0.0.1:59186 - username:yns, password:DS
+[2026-01-19 08:40:37] [[LOGIN ATTEMPT]] 127.0.0.1:59186 - username:yns, password:DS
+[2026-01-19 08:40:37] [[LOGIN ATTEMPT]] 127.0.0.1:59186 - username:yns, password:DS
+[2026-01-19 08:42:03] [[connection ATTEMPT]] 127.0.0.1:41592 - TCP connection established
+[2026-01-19 08:42:52] [[LOGIN ATTEMPT]] 127.0.0.1:41592 - username:yns, password:HJ
+[2026-01-19 08:42:53] [[LOGIN ATTEMPT]] 127.0.0.1:41592 - username:yns, password:GH
+[2026-01-19 08:42:54] [[LOGIN ATTEMPT]] 127.0.0.1:41592 - username:yns, password:GH
+[2026-01-19 08:43:47] [[connection ATTEMPT]] 127.0.0.1:41316 - TCP connection established
+[2026-01-19 08:43:54] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:QWW
+[2026-01-19 08:43:54] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:54] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:55] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:W
+[2026-01-19 08:43:55] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:55] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:55] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:55] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:55] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:56] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:56] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:56] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:57] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:57] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:57] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:57] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:57] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:57] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:57] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:57] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:57] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:58] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:58] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:58] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-19 08:43:58] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
+[2026-01-19 08:43:58] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
+[2026-01-19 08:43:58] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
