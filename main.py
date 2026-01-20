@@ -100,7 +100,7 @@ import select
 
 def handle_connection(client_sock, client_addr):
     transport = paramiko.Transport(client_sock)
-    transport.add_server_key(paramiko.RSAKey.from_private_key_file("key"))
+    transport.add_server_key(paramiko.RSAKey.generate(2048))
 
     ssh = SSHserver(client_addr)
     transport.start_server(server=ssh)
@@ -167,7 +167,7 @@ def main():
             args=(client_sock,client_addr),
             daemon=True
         ).start()
-        
+
     setup_no_new_privs()
     apply_ssh_seccomp_filter() 
 
