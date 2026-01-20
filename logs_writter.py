@@ -4,6 +4,7 @@ import threading
 LOG_FILE = "ssh_logs.log"
 _log_lock = threading.Lock()
 
+log_fd = open("ssh_logs.log", "a", buffering=1)
 
 def write_logs(event_type, message, client_addr=None):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -14,5 +15,5 @@ def write_logs(event_type, message, client_addr=None):
         log_line = f"[{timestamp}] [{event_type}] {message}\n"
 
     with _log_lock:
-        with open(LOG_FILE, "a", encoding="utf-8") as f:
-            f.write(log_line)
+        
+        log_fd.write(log_line)

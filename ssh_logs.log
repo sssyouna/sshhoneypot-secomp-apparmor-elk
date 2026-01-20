@@ -34,3 +34,19 @@
 [2026-01-19 08:43:58] [[LOGIN ATTEMPT]] 127.0.0.1:41316 - username:yns, password:E
 [2026-01-19 08:43:58] [[BRUTEFORCE]] 127.0.0.1:41316 - Too many failed attempts (limit=10)
 [2026-01-19 08:43:58] [[ALERT]] 127.0.0.1:41316 - Brute-force detected
+[2026-01-20 13:44:16] [[connection ATTEMPT]] 127.0.0.1:42914 - TCP connection established
+[2026-01-20 13:46:08] [[connection ATTEMPT]] 127.0.0.1:41494 - TCP connection established
+[2026-01-20 13:48:19] [[connection ATTEMPT]] 127.0.0.1:54844 - TCP connection established
+[2026-01-20 13:53:23] [[connection ATTEMPT]] 127.0.0.1:39356 - TCP connection established
+[2026-01-20 13:53:31] [[LOGIN ATTEMPT]] 127.0.0.1:39356 - username:yns, password:123
+[2026-01-20 13:53:31] [[LOGGED IN]] 127.0.0.1:39356 - username:yns
+[2026-01-20 13:53:35] [[COMMAND]] 127.0.0.1:39356 - commande sent youne
+[2026-01-20 13:53:37] [[COMMAND]] 127.0.0.1:39356 - commande sent llls
+[2026-01-20 13:53:39] [[COMMAND]] 127.0.0.1:39356 - commande sent vfvf
+[2026-01-20 13:53:40] [[COMMAND]] 127.0.0.1:39356 - commande sent vfvfb
+[2026-01-20 13:53:41] [[COMMAND]] 127.0.0.1:39356 - commande sent fbff
+[2026-01-20 13:53:47] [[COMMAND]] 127.0.0.1:39356 - commande sent q
+[2026-01-20 13:53:48] [[COMMAND]] 127.0.0.1:39356 - commande sent q
+[2026-01-20 13:53:50] [[connection ATTEMPT]] 127.0.0.1:45848 - TCP connection established
+[2026-01-20 13:53:52] [[LOGIN ATTEMPT]] 127.0.0.1:45848 - username:yns, password:121313
+[2026-01-20 13:53:54] [[LOGIN ATTEMPT]] 127.0.0.1:45848 - username:yns, password:rvev

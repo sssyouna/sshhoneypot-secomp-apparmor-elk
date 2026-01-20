@@ -2,6 +2,10 @@ import socket
 import paramiko
 import threading
 from   logs_writter import write_logs
+from seccomp_filter import apply_ssh_seccomp_filter,setup_no_new_privs
+import prctl
+
+
 
 BRUTEFORCE_LIMIT = 10
 
@@ -153,6 +157,8 @@ def main():
     server_sock.bind(('', 2121))
     server_sock.listen(100)
 
+  
+
     while True:
         client_sock, client_addr = server_sock.accept()
         write_logs("[connection ATTEMPT]","TCP connection established",client_addr)
@@ -161,14 +167,14 @@ def main():
             args=(client_sock,client_addr),
             daemon=True
         ).start()
+        
+    setup_no_new_privs()
+    apply_ssh_seccomp_filter() 
 
 
 if __name__ == "__main__":
     main()
 
-
-    chan.close()
-    transport.close()
 
 
         
