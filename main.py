@@ -1,7 +1,7 @@
 import socket
 import paramiko
 import threading
-from   logs_writter import write_logs
+from logs_writter import write_logs
 from seccomp_filter import apply_ssh_seccomp_filter,setup_no_new_privs
 import prctl
 
