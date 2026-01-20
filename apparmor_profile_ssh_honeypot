@@ -1,0 +1,60 @@
+#include <tunables/global>
+
+/usr/bin/python3 flags=(attach_disconnected, mediate_deleted) {
+    #include <abstractions/base>
+    #include <abstractions/python>
+
+    # Allow Python binary itself
+    /usr/bin/python3 mrix,
+
+    # Allow system libraries
+    /lib/** mrwk,
+    /lib/x86_64-linux-gnu/** mrwk,
+    /usr/lib/** mrwk,
+    /usr/lib/x86_64-linux-gnu/** mrwk,
+    /usr/lib64/** mrwk,
+    
+    # Shared libraries
+    /lib/**/*.so* mr,
+    /lib/x86_64-linux-gnu/**/*.so* mr,
+    /usr/lib/**/*.so* mr,
+    /usr/lib/x86_64-linux-gnu/**/*.so* mr,
+    /usr/lib64/**/*.so* mr,
+    
+    # Dynamic linker
+    /lib64/ld-linux-x86-64.so.2 mr,
+    /etc/ld.so.cache r,
+    
+    # Your honeypot files - both read and execute permissions for Python files
+    /home/yns/Desktop/honeypoy-ssh/** r,
+    /home/yns/Desktop/honeypoy-ssh/*.py r,
+    
+    # Specifically allow the files we need
+    /home/yns/Desktop/honeypoy-ssh/main.py r,
+    /home/yns/Desktop/honeypoy-ssh/logs_writter.py r,
+    /home/yns/Desktop/honeypoy-ssh/seccomp_filter.py r,
+    /home/yns/Desktop/honeypoy-ssh/ssh_logs.log rw,
+    /home/yns/Desktop/honeypoy-ssh/key r,
+    
+    # Python cache directories
+    /home/yns/Desktop/honeypoy-ssh/__pycache__/** rw,
+    /home/yns/Desktop/honeypoy-ssh/**/__pycache__/** rw,
+    
+    # System resources
+    /dev/null rw,
+    /dev/zero r,
+    /dev/random r,
+    /dev/urandom r,
+    
+    # Network access
+    network inet stream,
+    network inet6 stream,
+    
+    # Capabilities
+    capability setuid,
+    capability setgid,
+    capability dac_override,
+    capability chown,
+    capability net_bind_service,
+    
+}
