@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2026-01-19 08:40:34] [[connection ATTEMPT]] 127.0.0.1:59186 - TCP connection established
 [2026-01-19 08:40:36] [[LOGIN ATTEMPT]] 127.0.0.1:59186 - username:yns, password:DS
 [2026-01-19 08:40:37] [[LOGIN ATTEMPT]] 127.0.0.1:59186 - username:yns, password:DS
@@ -51,3 +52,6 @@
 [2026-01-20 13:53:52] [[LOGIN ATTEMPT]] 127.0.0.1:45848 - username:yns, password:121313
 [2026-01-20 13:53:54] [[LOGIN ATTEMPT]] 127.0.0.1:45848 - username:yns, password:rvev
 [2026-01-20 14:47:39] [[connection ATTEMPT]] 127.0.0.1:33744 - TCP connection established
+=======
+[2026-01-21 09:19:45] [[connection ATTEMPT]] 127.0.0.1:45052 - TCP connection established
+>>>>>>> 6620901 (Complete AppArmor integration and audit logging setup)
