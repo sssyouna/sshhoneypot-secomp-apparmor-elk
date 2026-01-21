@@ -15,6 +15,7 @@ import prctl
 def capture_apparmor_events():
     """Monitor and capture AppArmor events to a local file"""
     log_file = "/home/yns/Desktop/honeypoy-ssh/apparmor_audit.log"
+    source = "APPARMOR"
     
     # Command to follow kernel logs for AppArmor events
     cmd = ["journalctl", "-f", "-k"]
@@ -31,8 +32,10 @@ def capture_apparmor_events():
             bufsize=1
         )
         
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        start_message = f"{timestamp} [START] [{source}] AppArmor Event Capture Started\n"
         with open(log_file, 'a') as f:
-            f.write(f"\n--- AppArmor Event Capture Started: {datetime.now()} ---\n")
+            f.write(start_message)
             
         print("Monitoring for AppArmor events containing 'ssh_honeypot'...")
         
@@ -42,7 +45,9 @@ def capture_apparmor_events():
                 # Look for AppArmor events related to our honeypot
                 if "apparmor" in output.lower() and "ssh_honeypot" in output:
                     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                    log_entry = f"[{timestamp}] {output.strip()}\n"
+                    # Extract the actual AppArmor event details
+                    event_details = output.strip()
+                    log_entry = f"{timestamp} [EVENT] [{source}] {event_details}\n"
                     
                     with open(log_file, 'a') as f:
                         f.write(log_entry)
@@ -53,11 +58,17 @@ def capture_apparmor_events():
                 break
                 
     except KeyboardInterrupt:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        stop_message = f"{timestamp} [STOP] [{source}] AppArmor Event Capture Stopped\n"
         print("\nStopping AppArmor event capture...")
         with open(log_file, 'a') as f:
-            f.write(f"\n--- AppArmor Event Capture Stopped: {datetime.now()} ---\n")
+            f.write(stop_message)
     except Exception as e:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        error_message = f"{timestamp} [ERROR] [{source}] Error occurred: {e}\n"
         print(f"Error occurred: {e}")
+        with open(log_file, 'a') as f:
+            f.write(error_message)
 
 
 BRUTEFORCE_LIMIT = 10
