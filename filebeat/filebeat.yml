@@ -1,0 +1,9 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /home/yns/honeypot/logs/*.log
+    - /var/log/auth.log
+  fields:
+    service: ssh-honeypot
+  fields_under_root: true

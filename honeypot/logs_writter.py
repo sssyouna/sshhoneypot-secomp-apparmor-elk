@@ -1,7 +1,7 @@
 from datetime import datetime
 import threading
 
-LOG_FILE = "ssh_logs.log"
+LOG_FILE = "logs/ssh_logs.log"
 _log_lock = threading.Lock()
 
 log_fd = open("ssh_logs.log", "a", buffering=1)
