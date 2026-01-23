@@ -29,7 +29,7 @@ services:
     build: ./honeypot
     container_name: ssh-honeypot
     ports:
-      - "2222:2222"
+      - "2222:2121"
     volumes:
       - ./logs:/logs
     networks:
@@ -43,7 +43,7 @@ services:
       - elasticsearch
     volumes:
       - ./logs:/logs:ro
-      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ./filebeat/filebeat_simple.yml:/usr/share/filebeat/filebeat.yml:ro
     networks:
       - elk
 

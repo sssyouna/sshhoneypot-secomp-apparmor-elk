@@ -2,7 +2,12 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
+RUN mkdir -p logs
+
 COPY main.py .
+COPY logs_writter.py .
+COPY seccomp_filter.py .
+COPY capture_apparmor_events.py .
 
 RUN pip install paramiko
 

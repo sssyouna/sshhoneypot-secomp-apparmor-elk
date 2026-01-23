@@ -1,0 +1,21 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /logs/ssh_logs.log
+    - /logs/apparmor_audit.log
+    - /var/log/auth.log
+  fields:
+    service: ssh-honeypot
+  fields_under_root: true
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  index: "ssh-honeypot-logs-%{+yyyy.MM.dd}"
+
+setup.kibana:
+  host: "kibana:5601"
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded

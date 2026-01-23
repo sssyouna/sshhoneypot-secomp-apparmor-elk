@@ -9,8 +9,11 @@ except ImportError:
 
 def setup_no_new_privs():
     try:
-        import prctl
-        prctl.set_no_new_privs(True)
+        try:
+            import prctl
+            prctl.set_no_new_privs(True)
+        except ImportError:
+            print("[WARN] python-prctl not installed")
         print("[OK] no_new_privs enabled")
     except ImportError:
         print("[WARN] python-prctl not installed")

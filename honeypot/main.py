@@ -8,7 +8,10 @@ from datetime import datetime
 from logs_writter import write_logs
 from seccomp_filter import apply_ssh_seccomp_filter,setup_no_new_privs
 from capture_apparmor_events import capture_apparmor_events
-import prctl
+try:
+    import prctl
+except ImportError:
+    prctl = None  # prctl is optional, may not be available in all environments
 
 
 

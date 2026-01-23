@@ -1,0 +1,52 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /logs/ssh_logs.log
+  fields:
+    service: ssh-honeypot
+  fields_under_root: true
+  parsers:
+    - multiline:
+        type: pattern
+        pattern: '^\d{4}-\d{2}-\d{2}'
+        negate: true
+        match: after
+
+- type: log
+  enabled: true
+  paths:
+    - /logs/apparmor_audit.log
+  fields:
+    service: apparmor
+  fields_under_root: true
+  parsers:
+    - multiline:
+        type: pattern
+        pattern: '^\d{4}-\d{2}-\d{2}'
+        negate: true
+        match: after
+
+# Disable data streams and ILM
+setup.ilm.enabled: false
+setup.ilm.overwrite: true
+output.elasticsearch.index: "ssh-honeypot-logs"
+output.elasticsearch.data_stream.dataset: "ssh-honeypot.logs"
+output.elasticsearch.data_stream.enabled: false
+
+# Setup template
+setup.template.enabled: true
+setup.template.name: "ssh-honeypot"
+setup.template.pattern: "ssh-honeypot-*"
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  index: "ssh-honeypot-logs"
+
+setup.kibana:
+  host: "kibana:5601"
+
+processors:
+  - add_host_metadata:
+      when.not.contains.tags: forwarded
+  - add_docker_metadata: ~
