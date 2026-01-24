@@ -4,40 +4,25 @@ filebeat.inputs:
   paths:
     - /logs/ssh_logs.log
   fields:
+    log_type: ssh_honeypot
     service: ssh-honeypot
   fields_under_root: true
-  parsers:
-    - multiline:
-        type: pattern
-        pattern: '^\d{4}-\d{2}-\d{2}'
-        negate: true
-        match: after
 
 - type: log
   enabled: true
   paths:
     - /logs/apparmor_audit.log
   fields:
+    log_type: apparmor
     service: apparmor
   fields_under_root: true
-  parsers:
-    - multiline:
-        type: pattern
-        pattern: '^\d{4}-\d{2}-\d{2}'
-        negate: true
-        match: after
 
-# Disable data streams and ILM
+# Disable ILM and use simple index management
 setup.ilm.enabled: false
-setup.ilm.overwrite: true
-output.elasticsearch.index: "ssh-honeypot-logs"
-output.elasticsearch.data_stream.dataset: "ssh-honeypot.logs"
-output.elasticsearch.data_stream.enabled: false
-
-# Setup template
 setup.template.enabled: true
 setup.template.name: "ssh-honeypot"
 setup.template.pattern: "ssh-honeypot-*"
+setup.dashboards.enabled: false
 
 output.elasticsearch:
   hosts: ["elasticsearch:9200"]
@@ -50,3 +35,18 @@ processors:
   - add_host_metadata:
       when.not.contains.tags: forwarded
   - add_docker_metadata: ~
+  - dissect:
+      tokenizer: "%{timestamp} [[%{event_type}]] [%{source}] %{details}"
+      field: "message"
+      target_prefix: "parsed"
+  - rename:
+      fields:
+        - from: "parsed.timestamp"
+          to: "event_timestamp"
+        - from: "parsed.event_type"
+          to: "event_type"
+        - from: "parsed.source"
+          to: "source_component"
+        - from: "parsed.details"
+          to: "event_details"
+      ignore_missing: true
