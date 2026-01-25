@@ -1,3 +1,6 @@
-server.host: "127.0.0.1"
+server.host: "0.0.0.0"
 server.port: 5601
-elasticsearch.hosts: ["http://127.0.0.1:9200"]
+
+elasticsearch.hosts: ["http://elasticsearch:9200"]
+
+xpack.security.enabled: false
