@@ -4,49 +4,50 @@ filebeat.inputs:
   paths:
     - /logs/ssh_logs.log
   fields:
-    log_type: ssh_honeypot
-    service: ssh-honeypot
+    log_type: custom_ssh_log
+    service: honeypot_service
   fields_under_root: true
+  scan_frequency: 10s
+  close_inactive: 5m
 
 - type: log
   enabled: true
   paths:
     - /logs/apparmor_audit.log
   fields:
-    log_type: apparmor
-    service: apparmor
+    log_type: custom_apparmor_log
+    service: honeypot_service
   fields_under_root: true
+  multiline.pattern: '^type='
+  multiline.negate: true
+  multiline.match: after
+  scan_frequency: 10s
+  close_inactive: 5m
 
-# Disable ILM and use simple index management
+# Disable ILM & templates (OK for lab)
 setup.ilm.enabled: false
-setup.template.enabled: true
-setup.template.name: "ssh-honeypot"
-setup.template.pattern: "ssh-honeypot-*"
+setup.template.enabled: false
 setup.dashboards.enabled: false
 
+# Remove conflicting settings that might trigger data stream creation
+setup.template.overwrite: false
+output.elasticsearch.template.enabled: false
+
+# Use basic index output instead of data streams to avoid template issues
 output.elasticsearch:
-  hosts: ["elasticsearch:9200"]
-  index: "ssh-honeypot-logs"
+  hosts: ["http://elasticsearch:9200"]
+  indices:
+    - index: "custom-ssh-logs"
+  template.enabled: false
+  ilm.enabled: false
+  data_stream.enabled: false
 
 setup.kibana:
-  host: "kibana:5601"
+  host: "http://kibana:5601"
+
+logging.level: debug
+logging.to_stderr: true
+logging.selectors: ["elasticsearch"]
 
 processors:
-  - add_host_metadata:
-      when.not.contains.tags: forwarded
-  - add_docker_metadata: ~
-  - dissect:
-      tokenizer: "%{timestamp} [[%{event_type}]] [%{source}] %{details}"
-      field: "message"
-      target_prefix: "parsed"
-  - rename:
-      fields:
-        - from: "parsed.timestamp"
-          to: "event_timestamp"
-        - from: "parsed.event_type"
-          to: "event_type"
-        - from: "parsed.source"
-          to: "source_component"
-        - from: "parsed.details"
-          to: "event_details"
-      ignore_missing: true
+  - add_host_metadata: ~
